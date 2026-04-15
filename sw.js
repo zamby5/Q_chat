@@ -1,7 +1,7 @@
 // Ask·Q — Servis İşçisi (PWA)
 // Önbellek sürümü: v1 — Değiştirince sürümü artır
 
-const CACHE_ADI = 'askq-v1';
+const CACHE_ADI = 'askq-v2';
 const ONBELLEK_DOSYALARI = [
   './',
   './index.html',
