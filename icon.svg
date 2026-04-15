@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0d2247" rx="90"/>
+  <circle cx="256" cy="256" r="185" fill="none" stroke="#b8932a" stroke-width="10"/>
+  <text
+    x="256" y="326"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="240"
+    font-style="italic"
+    font-weight="600"
+    fill="#b8932a"
+    text-anchor="middle">Q</text>
+</svg>
