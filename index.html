@@ -30,8 +30,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .header-left{display:flex;align-items:center;gap:10px;}
 
 /* LOGO — sadece path, text elementi yok, her yerde çalışır */
-.logo-wrap{position:relative;width:46px;height:46px;background:#fff;border-radius:9px;padding:3px;box-shadow:0 0 0 1.5px var(--gold),0 3px 12px rgba(0,0,0,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.logo-wrap svg.crown{width:40px;height:40px;display:block;}
+.logo-wrap{position:relative;width:46px;height:46px;background:transparent;border-radius:9px;padding:0;box-shadow:0 0 0 1.5px var(--gold),0 3px 12px rgba(0,0,0,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.logo-wrap svg.crown{width:46px;height:46px;display:block;border-radius:9px;}
 .online-dot{position:absolute;bottom:-3px;right:-3px;width:11px;height:11px;background:#22c55e;border-radius:50%;border:2px solid var(--navy);animation:pulse 2.5s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5);}50%{box-shadow:0 0 0 5px rgba(34,197,94,0);}}
 
@@ -63,7 +63,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .home-screen::-webkit-scrollbar{width:3px;}
 .home-screen::-webkit-scrollbar-thumb{background:rgba(13,34,71,0.15);border-radius:2px;}
 .welcome-card{background:var(--navy);border-radius:16px;padding:20px;text-align:center;box-shadow:var(--shadow);}
-.welcome-card .q-badge{width:56px;height:56px;margin:0 auto 11px;background:rgba(255,255,255,0.06);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.welcome-card .q-badge{width:62px;height:62px;margin:0 auto 11px;border-radius:14px;overflow:hidden;box-shadow:0 0 0 2px var(--gold),0 4px 16px rgba(0,0,0,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.welcome-card .q-badge svg{width:62px;height:62px;display:block;}
 .welcome-card .q-badge svg{width:38px;height:38px;}
 .welcome-card h2{font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:7px;}
 .welcome-card p{font-size:12px;color:rgba(255,255,255,0.58);line-height:1.65;}
@@ -94,8 +95,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .msg-row.bot{justify-content:flex-start;gap:8px;}
 @keyframes slideIn{from{opacity:0;transform:translateY(8px) scale(0.97);}to{opacity:1;transform:none;}}
 /* Sohbet avatarı da aynı path-only logo */
-.avatar{width:30px;height:30px;flex-shrink:0;margin-top:2px;background:#fff;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 1px 6px rgba(13,34,71,0.12);}
-.avatar svg{width:22px;height:22px;}
+.avatar{width:32px;height:32px;flex-shrink:0;margin-top:2px;border-radius:8px;overflow:hidden;box-shadow:0 0 0 1.5px var(--gold),0 1px 6px rgba(13,34,71,0.15);}
+.avatar svg{width:32px;height:32px;display:block;}
 .bubble{padding:11px 14px;border-radius:16px;font-size:13.5px;line-height:1.58;max-width:83%;}
 .bubble.bot-b{background:var(--white);border:1px solid rgba(13,34,71,0.08);color:var(--navy);border-radius:4px 16px 16px 16px;box-shadow:var(--shadow);}
 .bubble.usr-b{background:var(--navy);color:#fff;border-radius:16px 16px 4px 16px;box-shadow:0 2px 10px rgba(13,34,71,0.18);}
@@ -167,21 +168,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div class="app">
   <header class="header">
     <div class="header-left">
-      <!-- TURYAP QUEEN LOGO — tamamen path tabanlı, text elementi yok, her tarayıcıda çalışır -->
+      <!-- TURYAP QUEEN LOGO — resmi Q logosu -->
       <div class="logo-wrap">
-        <svg class="crown" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-          <!-- Taç dış formu -->
-          <path d="M4 30 L9 13 L16 21 L20 7 L24 21 L31 13 L36 30 Z" fill="#b8932a"/>
-          <!-- Taç alt bandı -->
-          <path d="M4 30 L36 30 L35 35 Q20 37 5 35 Z" fill="#7a6018"/>
-          <!-- Üst merkez taş -->
-          <circle cx="20" cy="10.5" r="2.2" fill="#fff" opacity="0.85"/>
-          <!-- Sol taş -->
-          <circle cx="10.5" cy="19" r="1.5" fill="#fff" opacity="0.6"/>
-          <!-- Sağ taş -->
-          <circle cx="29.5" cy="19" r="1.5" fill="#fff" opacity="0.6"/>
-          <!-- Alt bant orta süs -->
-          <circle cx="20" cy="32.5" r="1.2" fill="#b8932a" opacity="0.9"/>
+        <svg class="crown" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <rect width="512" height="512" fill="#0d2247" rx="90"/>
+          <circle cx="256" cy="256" r="185" fill="none" stroke="#b8932a" stroke-width="18"/>
+          <text x="256" y="326" font-family="Georgia,'Times New Roman',serif" font-size="240" font-style="italic" font-weight="600" fill="#b8932a" text-anchor="middle">Q</text>
         </svg>
         <div class="online-dot"></div>
       </div>
@@ -219,12 +211,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div class="home-screen" id="homeScreen">
     <div class="welcome-card">
       <div class="q-badge">
-        <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 28 L8 12 L15 20 L19 6 L23 20 L30 12 L35 28 Z" fill="#b8932a"/>
-          <path d="M3 28 L35 28 L34 33 Q19 35 4 33 Z" fill="rgba(255,255,255,0.15)"/>
-          <circle cx="19" cy="9.5" r="2" fill="#fff" opacity="0.8"/>
-          <circle cx="10" cy="17.5" r="1.4" fill="#fff" opacity="0.55"/>
-          <circle cx="28" cy="17.5" r="1.4" fill="#fff" opacity="0.55"/>
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <rect width="512" height="512" fill="#0d2247" rx="90"/>
+          <circle cx="256" cy="256" r="185" fill="none" stroke="#b8932a" stroke-width="18"/>
+          <text x="256" y="326" font-family="Georgia,'Times New Roman',serif" font-size="240" font-style="italic" font-weight="600" fill="#b8932a" text-anchor="middle">Q</text>
         </svg>
       </div>
       <h2 id="welcomeTitle">Merhaba.</h2>
@@ -283,15 +273,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 new QRCode(document.getElementById('qrCanvas'),{text:'https://www.turyapqueen.com',width:188,height:188,colorDark:'#0d2247',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
 
 /* ============================================================
-   TURYAP QUEEN LOGO SVG — path tabanlı, tüm tarayıcılarda sabit
+   TURYAP QUEEN LOGO SVG — resmi Q logosu
 ============================================================ */
-const CROWN_SVG = `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-  <path d="M4 30 L9 13 L16 21 L20 7 L24 21 L31 13 L36 30 Z" fill="#b8932a"/>
-  <path d="M4 30 L36 30 L35 35 Q20 37 5 35 Z" fill="#7a6018"/>
-  <circle cx="20" cy="10.5" r="2.2" fill="#fff" opacity="0.85"/>
-  <circle cx="10.5" cy="19" r="1.5" fill="#fff" opacity="0.6"/>
-  <circle cx="29.5" cy="19" r="1.5" fill="#fff" opacity="0.6"/>
-  <circle cx="20" cy="32.5" r="1.2" fill="#b8932a" opacity="0.9"/>
+const CROWN_SVG = `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#0d2247" rx="90"/>
+  <circle cx="256" cy="256" r="185" fill="none" stroke="#b8932a" stroke-width="18"/>
+  <text x="256" y="326" font-family="Georgia,'Times New Roman',serif" font-size="240" font-style="italic" font-weight="600" fill="#b8932a" text-anchor="middle">Q</text>
 </svg>`;
 
 /* ============================================================
@@ -340,8 +327,14 @@ Yalnızca ad biliniyorsa: "Sayın [Ad] Bey" veya "Sayın [Ad] Hanım".
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 1. "İyi günler. Turyap Queen gayrimenkul danışmanlığına hoş geldiniz." ile başla.
 2. Doğal bir tanışma tonu ile tam adını sor.
-3. Ad alındıktan sonra: "Sayın [Ad Soyad], size özel bilgi iletebilmem için telefon numaranızı alabilir miyim?"
+3. Ad alındıktan sonra telefon numarasını şu şekilde iste (KVKK bildirimini mutlaka ekle):
+   "Sayın [Ad Soyad], size özel bilgi iletebilmem için telefon numaranızı alabilir miyim? Paylaştığınız veriler, 6698 sayılı KVKK kapsamında yalnızca gayrimenkul taleplerinizin yönetilmesi amacıyla işlenmektedir."
 4. Her ikisi alındıktan sonra asıl konuya geç.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERİ MİNİMİZASYONU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Kullanıcıdan YALNIZCA tam ad ve telefon numarasını iste. Başka kişisel veri (e-posta, adres, TC kimlik vb.) talep etme.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FİYAT HESAPLAMA KURALI — ZORUNLU MATEMATİK
@@ -415,8 +408,13 @@ FIRST CONTACT FLOW
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 1. Start with "Good day. Welcome to Turyap Queen real estate consultancy."
 2. Naturally ask for full name.
-3. After name: "Dear [Full Name], may I also have your contact number to send you personalised information?"
+3. After name: "Dear [Full Name], may I also have your contact number to send you personalised information? Your data will be processed solely for managing your property requests, in accordance with Turkish Personal Data Protection Law (KVKK, Law No. 6698)."
 4. After both received: proceed to the topic.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DATA MINIMISATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Request ONLY full name and phone number. Do not ask for e-mail, address, ID or any other personal data.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 PRICE CALCULATION — MANDATORY MATHS
@@ -485,6 +483,20 @@ ru: {
 "Уважаемый/Уважаемая [Имя Фамилия]"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ПЕРВЫЙ КОНТАКТ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Начните с "Добрый день. Добро пожаловать в консультационное агентство Turyap Queen."
+2. Естественным тоном спросите полное имя.
+3. После получения имени запросите номер телефона с уведомлением о защите данных:
+   "Уважаемый/Уважаемая [Имя Фамилия], могу ли я получить ваш номер телефона для отправки персональной информации? Ваши данные обрабатываются исключительно в целях управления вашими запросами в сфере недвижимости в соответствии с Законом Турции № 6698 о защите персональных данных (KVKK)."
+4. После получения обоих — переходите к теме.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+МИНИМИЗАЦИЯ ДАННЫХ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Запрашивайте ТОЛЬКО полное имя и номер телефона. Не запрашивайте e-mail, адрес, паспортные данные или иную личную информацию.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
 РАСЧЁТ ПЛОЩАДИ — ОБЯЗАТЕЛЬНАЯ МАТЕМАТИКА
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 При указании бюджета рассчитывайте площадь математически:
@@ -532,6 +544,20 @@ ANREDEPFLICHT — STRIKT EINZUHALTEN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 REGEL 1 — Name unbekannt: NIEMALS "Sehr geehrte/r" ohne Namen. Nur: "Guten Tag."
 REGEL 2 — Nach Namensangabe: "Sehr geehrte/r [Vorname Nachname]"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ERSTKONTAKT-ABLAUF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Beginnen Sie mit "Guten Tag. Herzlich willkommen bei Turyap Queen Immobilienberatung."
+2. Fragen Sie natürlich nach dem vollständigen Namen.
+3. Nach Namenserhalt — Telefonnummer mit Datenschutzhinweis anfragen:
+   "Sehr geehrte/r [Vorname Nachname], darf ich auch Ihre Telefonnummer erhalten, um Ihnen persönliche Informationen zuzusenden? Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Immobilienanfragen verarbeitet, gemäß dem türkischen Datenschutzgesetz (KVKK, Gesetz Nr. 6698)."
+4. Sobald beide Angaben vorliegen: zum Thema übergehen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DATENMINIMIERUNG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Fragen Sie NUR nach vollständigem Namen und Telefonnummer. Keine E-Mail, Adresse, Ausweisnummer oder sonstige persönliche Daten anfragen.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FLÄCHENBERECHNUNG — PFLICHTMATHEMATIK
