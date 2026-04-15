@@ -12,11 +12,12 @@
 <link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <style>
 :root{
-  --bg:#eef2f7;--bg-mid:#dce4ef;--panel:#f7f9fc;
-  --navy:#0d2247;--navy-mid:#163366;--navy-lt:#1e4a8a;
-  --gold:#b8932a;--dimtxt:#7a90a8;--white:#ffffff;
+  --bg:#eef2f7; --bg-mid:#dce4ef; --panel:#f7f9fc;
+  --navy:#0d2247; --navy-mid:#163366; --navy-lt:#1e4a8a;
+  --gold:#b8932a; --dimtxt:#7a90a8; --white:#ffffff;
   --shadow:0 2px 16px rgba(13,34,71,0.10);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -27,10 +28,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 /* BAŞLIK */
 .header{flex-shrink:0;padding:12px 14px 10px;background:var(--navy);display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);}
 .header-left{display:flex;align-items:center;gap:10px;}
+
+/* LOGO — sadece path, text elementi yok, her yerde çalışır */
 .logo-wrap{position:relative;width:46px;height:46px;background:#fff;border-radius:9px;padding:3px;box-shadow:0 0 0 1.5px var(--gold),0 3px 12px rgba(0,0,0,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.logo-wrap svg{width:40px;height:40px;display:block;}
+.logo-wrap svg.crown{width:40px;height:40px;display:block;}
 .online-dot{position:absolute;bottom:-3px;right:-3px;width:11px;height:11px;background:#22c55e;border-radius:50%;border:2px solid var(--navy);animation:pulse 2.5s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5);}50%{box-shadow:0 0 0 5px rgba(34,197,94,0);}}
+
 .header-info h1{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#fff;}
 .header-info p{font-size:10px;color:rgba(255,255,255,0.6);margin-top:1px;}
 .app-name{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:var(--gold);margin-top:2px;letter-spacing:0.04em;}
@@ -59,8 +63,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .home-screen::-webkit-scrollbar{width:3px;}
 .home-screen::-webkit-scrollbar-thumb{background:rgba(13,34,71,0.15);border-radius:2px;}
 .welcome-card{background:var(--navy);border-radius:16px;padding:20px;text-align:center;box-shadow:var(--shadow);}
-.welcome-card .q-badge{width:56px;height:56px;margin:0 auto 11px;background:rgba(255,255,255,0.06);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;padding:4px;}
-.welcome-card .q-badge svg{width:44px;height:44px;}
+.welcome-card .q-badge{width:56px;height:56px;margin:0 auto 11px;background:rgba(255,255,255,0.06);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.welcome-card .q-badge svg{width:38px;height:38px;}
 .welcome-card h2{font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:7px;}
 .welcome-card p{font-size:12px;color:rgba(255,255,255,0.58);line-height:1.65;}
 .section-title{font-size:10px;color:var(--dimtxt);letter-spacing:0.12em;text-transform:uppercase;padding:0 2px;}
@@ -89,7 +93,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .msg-row.user{justify-content:flex-end;}
 .msg-row.bot{justify-content:flex-start;gap:8px;}
 @keyframes slideIn{from{opacity:0;transform:translateY(8px) scale(0.97);}to{opacity:1;transform:none;}}
-.avatar{width:30px;height:30px;flex-shrink:0;margin-top:2px;background:var(--white);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 1px 6px rgba(13,34,71,0.12);}
+/* Sohbet avatarı da aynı path-only logo */
+.avatar{width:30px;height:30px;flex-shrink:0;margin-top:2px;background:#fff;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 1px 6px rgba(13,34,71,0.12);}
 .avatar svg{width:22px;height:22px;}
 .bubble{padding:11px 14px;border-radius:16px;font-size:13.5px;line-height:1.58;max-width:83%;}
 .bubble.bot-b{background:var(--white);border:1px solid rgba(13,34,71,0.08);color:var(--navy);border-radius:4px 16px 16px 16px;box-shadow:var(--shadow);}
@@ -118,7 +123,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .mic-btn{width:42px;height:42px;flex-shrink:0;background:var(--bg);border:1.5px solid var(--bg-mid);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
 .mic-btn:hover{border-color:var(--navy-lt);background:var(--bg-mid);}
 .mic-btn.recording{background:#fee2e2;border-color:#ef4444;animation:micPulse 1s infinite;}
-.mic-btn svg{width:15px;height:15px;stroke:var(--dimtxt);fill:none;stroke-width:2;transition:stroke 0.2s;}
+.mic-btn svg{width:15px;height:15px;stroke:var(--dimtxt);fill:none;stroke-width:2;}
 .mic-btn:hover svg{stroke:var(--navy-lt);}
 .mic-btn.recording svg{stroke:#ef4444;}
 @keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0.4);}50%{box-shadow:0 0 0 7px rgba(239,68,68,0);}}
@@ -145,7 +150,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </head>
 <body>
 
-<!-- QR MODAL -->
 <div class="modal-overlay" id="qrModal" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="qr-card">
     <div id="qrCanvas"></div>
@@ -163,19 +167,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div class="app">
   <header class="header">
     <div class="header-left">
-      <!-- TURYAP QUEEN LOGO — inline SVG, hiç bozulmaz -->
+      <!-- TURYAP QUEEN LOGO — tamamen path tabanlı, text elementi yok, her tarayıcıda çalışır -->
       <div class="logo-wrap">
-        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-          <!-- Taç -->
-          <path d="M5 29 L10 15 L17 22 L20 8 L23 22 L30 15 L35 29 Z" fill="#b8932a"/>
+        <svg class="crown" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <!-- Taç dış formu -->
+          <path d="M4 30 L9 13 L16 21 L20 7 L24 21 L31 13 L36 30 Z" fill="#b8932a"/>
           <!-- Taç alt bandı -->
-          <rect x="5" y="29" width="30" height="5" rx="2" fill="#0d2247"/>
-          <!-- Taç mücevherleri -->
-          <circle cx="20" cy="12" r="1.8" fill="#fff" opacity="0.75"/>
-          <circle cx="11" cy="20" r="1.2" fill="#fff" opacity="0.5"/>
-          <circle cx="29" cy="20" r="1.2" fill="#fff" opacity="0.5"/>
-          <!-- Alt metin -->
-          <text x="20" y="37" font-family="Arial,sans-serif" font-size="4.5" font-weight="900" fill="#b8932a" text-anchor="middle" letter-spacing="0.8">QUEEN</text>
+          <path d="M4 30 L36 30 L35 35 Q20 37 5 35 Z" fill="#7a6018"/>
+          <!-- Üst merkez taş -->
+          <circle cx="20" cy="10.5" r="2.2" fill="#fff" opacity="0.85"/>
+          <!-- Sol taş -->
+          <circle cx="10.5" cy="19" r="1.5" fill="#fff" opacity="0.6"/>
+          <!-- Sağ taş -->
+          <circle cx="29.5" cy="19" r="1.5" fill="#fff" opacity="0.6"/>
+          <!-- Alt bant orta süs -->
+          <circle cx="20" cy="32.5" r="1.2" fill="#b8932a" opacity="0.9"/>
         </svg>
         <div class="online-dot"></div>
       </div>
@@ -213,13 +219,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div class="home-screen" id="homeScreen">
     <div class="welcome-card">
       <div class="q-badge">
-        <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 32 L11 16 L19 24 L22 8 L25 24 L33 16 L39 32 Z" fill="#b8932a"/>
-          <rect x="5" y="32" width="34" height="5" rx="2" fill="rgba(255,255,255,0.15)"/>
-          <circle cx="22" cy="13" r="2" fill="#fff" opacity="0.7"/>
-          <circle cx="12" cy="22" r="1.3" fill="#fff" opacity="0.45"/>
-          <circle cx="32" cy="22" r="1.3" fill="#fff" opacity="0.45"/>
-          <text x="22" y="41" font-family="Arial,sans-serif" font-size="5" font-weight="900" fill="#b8932a" text-anchor="middle" letter-spacing="0.8">QUEEN</text>
+        <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 28 L8 12 L15 20 L19 6 L23 20 L30 12 L35 28 Z" fill="#b8932a"/>
+          <path d="M3 28 L35 28 L34 33 Q19 35 4 33 Z" fill="rgba(255,255,255,0.15)"/>
+          <circle cx="19" cy="9.5" r="2" fill="#fff" opacity="0.8"/>
+          <circle cx="10" cy="17.5" r="1.4" fill="#fff" opacity="0.55"/>
+          <circle cx="28" cy="17.5" r="1.4" fill="#fff" opacity="0.55"/>
         </svg>
       </div>
       <h2 id="welcomeTitle">Merhaba.</h2>
@@ -250,7 +255,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
     <div class="home-input-row">
       <input class="msg-input" id="homeInput" type="text" placeholder="Mesajınızı yazın…" onkeydown="if(event.key==='Enter')sendFromHome()">
-      <button class="mic-btn" id="micHome" onclick="toggleMic()" title="Sesli mesaj">
+      <button class="mic-btn" id="micHome" onclick="toggleMic()">
         <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
       </button>
       <button class="send-btn" onclick="sendFromHome()">
@@ -264,7 +269,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="chat-area" id="chatArea"></div>
     <div class="input-bar">
       <input class="msg-input" id="chatInput" type="text" placeholder="Mesajınızı yazın…" onkeydown="if(event.key==='Enter')sendMsg()">
-      <button class="mic-btn" id="micChat" onclick="toggleMic()" title="Sesli mesaj">
+      <button class="mic-btn" id="micChat" onclick="toggleMic()">
         <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
       </button>
       <button class="send-btn" onclick="sendMsg()">
@@ -275,253 +280,317 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
 
 <script>
-/* QR */
 new QRCode(document.getElementById('qrCanvas'),{text:'https://www.turyapqueen.com',width:188,height:188,colorDark:'#0d2247',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
 
-/* =================================================================
-   SİSTEM PROMPTLARI — Gerçekçi, kurumsal, insan sıcaklığında
-================================================================= */
-const T={
-  tr:{
-    status:'Gayrimenkul Yatırım Uzmanı',
-    welcomeTitle:'Merhaba.',
-    welcomeDesc:'Ben Q, Murat Bey\'in gayrimenkul asistanıyım. Antalya piyasası hakkında sorularınızı yanıtlamak ve doğru adımı birlikte planlamak için buradayım.',
-    sectionTopics:'Konu seçiniz',
-    opt1Title:'Satış',opt1Sub:'Piyasa değeri & süreç',
-    opt2Title:'Kiralama',opt2Sub:'Kira analizi & kiracı',
-    opt3Title:'Yatırım',opt3Sub:'Getiri & bölge analizi',
-    opt4Title:'Değerleme',opt4Sub:'Ücretsiz ekspertiz',
-    placeholder:'Mesajınızı yazın…',
-    backBtn:'Ana Sayfa',qrSub:'Web sitemizi ziyaret edin',closeBtn:'Kapat',
-    callBtn:'📞 Ara',waBtn:'💬 WhatsApp',
-    listening:'Dinleniyor…',voiceOn:'Sesli okuma açık',voiceOff:'Sesli okuma kapalı',
-    system:`Sen "Q" — Turyap Queen, Antalya'da Murat İyicioğlu'nun kişisel gayrimenkul danışmanlık asistanısın.
+/* ============================================================
+   TURYAP QUEEN LOGO SVG — path tabanlı, tüm tarayıcılarda sabit
+============================================================ */
+const CROWN_SVG = `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 30 L9 13 L16 21 L20 7 L24 21 L31 13 L36 30 Z" fill="#b8932a"/>
+  <path d="M4 30 L36 30 L35 35 Q20 37 5 35 Z" fill="#7a6018"/>
+  <circle cx="20" cy="10.5" r="2.2" fill="#fff" opacity="0.85"/>
+  <circle cx="10.5" cy="19" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="29.5" cy="19" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="20" cy="32.5" r="1.2" fill="#b8932a" opacity="0.9"/>
+</svg>`;
 
-KİŞİLİK VE ÜSLUP:
-Deneyimli, güvenilir ve sıcakkanlı bir gayrimenkul uzmanı gibi konuş. Kurumsal ama insani; net ama anlayışlı. Gerçek bir danışman gibi dinle, değerlendir ve yönlendir. Dolgu sözcükler ("Harika!", "Kesinlikle!", "Tabii ki!") asla kullanma. Her cümlen bir anlam taşısın.
+/* ============================================================
+   SİSTEM PROMPTLARI
+   ─ Groq llama-3.3-70b-versatile için özel olarak sertleştirildi
+   ─ Sorunlar: yabancı kelime sızması, Çince karakter, hatalı hitap, hatalı m² hesabı
+============================================================ */
+const T = {
 
-DİL:
-Yalnızca doğru ve akıcı Türkçe. Hiçbir yabancı sözcük ya da kısaltma.
+tr: {
+  status:'Gayrimenkul Yatırım Uzmanı',
+  welcomeTitle:'Merhaba.',
+  welcomeDesc:'Ben Q, Murat Bey\'in gayrimenkul asistanıyım. Antalya piyasası hakkında sorularınızı yanıtlamak ve doğru adımı birlikte planlamak için buradayım.',
+  sectionTopics:'Konu seçiniz',
+  opt1Title:'Satış',opt1Sub:'Piyasa değeri & süreç',
+  opt2Title:'Kiralama',opt2Sub:'Kira analizi & kiracı',
+  opt3Title:'Yatırım',opt3Sub:'Getiri & bölge analizi',
+  opt4Title:'Değerleme',opt4Sub:'Ücretsiz ekspertiz',
+  placeholder:'Mesajınızı yazın…',
+  backBtn:'Ana Sayfa',qrSub:'Web sitemizi ziyaret edin',closeBtn:'Kapat',
+  callBtn:'📞 Ara',waBtn:'💬 WhatsApp',
+  listening:'Dinleniyor…',voiceOn:'Sesli okuma açık',voiceOff:'Sesli okuma kapalı',
+  system:`Sen "Q" — Turyap Queen bünyesinde Murat İyicioğlu'nun kurumsal gayrimenkul danışmanlık asistanısın.
 
-ZORUNLU HİTAP KURALI:
-Müşteriyi yalnızca adıyla çağırmak kesinlikle yasaktır.
-— Ad ve soyad biliniyorsa: "Sayın [Ad Soyad]"
-— Yalnızca ad biliniyorsa: "Sayın [Ad] Hanım" veya "Sayın [Ad] Bey"
-Bu kural her mesajda, istisna olmaksızın geçerlidir.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DİL KURALI — EN ÖNEMLİ KURAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Her yanıtında YALNIZCA sade, doğru ve akıcı Türkçe yaz. Aşağıdakiler KESİNLİKLE YASAKTIR:
+- İngilizce sözcükler: however, but, please, yes, no, note, important, details vb.
+- Herhangi bir Çince, Arapça, Japonca veya başka bir alfabe karakteri
+- Karışık dil kullanımı
 
-İLK TEMAS — DOĞAL AKIM:
-Konuşmanın ilk yanıtında, selamlama yaptıktan sonra doğal biçimde ad ve soyad sor. Bunu bir form doldurmak gibi değil, samimi bir tanışma gibi yap. Tam adı aldıktan sonra iletişim numarasını iste; bunu da "size özel bilgi iletebilmek için" gerekçesiyle. İkisi de alındıktan sonra asıl konuya odaklan.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HİTAP KURALI — KESİNLİKLE UYULACAK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+KURAL 1 — Ad henüz bilinmiyor (ilk mesaj veya isim alınmadan önce):
+"Bey" veya "Hanım" kelimesini ASLA kullanma. İsim olmadan unvan kullanmak YASAKTIR.
+Sadece "İyi günler." veya "Merhaba." ile selamlama yap.
 
-RANDEVU TEKLİFİ:
-Konuşma içinde doğal bir açılış gördüğünde — yaklaşık her 3-4 yanıtta bir — Murat Bey ile yüz yüze ya da telefonla görüşme öner. Bunu ısrarcı değil; samimi ve değer yaratan bir hizmet olarak sun. Örnek: "Detayları yüz yüze konuşmak isterseniz Murat Bey'in bu hafta müsaitliği var; bir zaman ayarlayabilim."
+KURAL 2 — Ad alındıktan sonra (her zaman):
+"Sayın [Ad Soyad] Bey" veya "Sayın [Ad Soyad] Hanım" formatını kullan.
+Yalnızca ad biliniyorsa: "Sayın [Ad] Bey" veya "Sayın [Ad] Hanım".
 
-İLETİŞİM:
-— Yanıt başına 3-5 cümle. Uzatma, özetleme.
-— Fiyat verirken daima aralık kullan ve "yerinde incelemeye tabidir" notunu ekle.
-— Aşağıdaki 2026 verilerinin dışında hiçbir rakam verme.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+İLK TEMAS AKIŞI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. "İyi günler. Turyap Queen gayrimenkul danışmanlığına hoş geldiniz." ile başla.
+2. Doğal bir tanışma tonu ile tam adını sor.
+3. Ad alındıktan sonra: "Sayın [Ad Soyad], size özel bilgi iletebilmem için telefon numaranızı alabilir miyim?"
+4. Her ikisi alındıktan sonra asıl konuya geç.
 
-ANTALYA KONUT PİYASASI — 2026 YILI ORTALAMALARI:
-Konyaaltı Altınkum : Satış 55.000–85.000 TL/m²  |  Kira 28.000–42.000 TL/ay (2+1, yaklaşık 100 m²)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FİYAT HESAPLAMA KURALI — ZORUNLU MATEMATİK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Müşteri bütçe belirttiğinde, verdiğin m² fiyat aralığı ile matematiksel tutarlı hesap yap:
+Alınabilecek alan = Bütçe ÷ m² fiyatı
+Örnek: 3.500.000 TL bütçe, 55.000–85.000 TL/m² fiyat → 41–63 m² alınabilir.
+Uydurma ya da tutarsız m² rakamı yazmak KESİNLİKLE YASAKTIR.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RANDEVU TEKLİFİ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Her 3-4 yanıtta bir, doğal bir açılışla randevu teklif et:
+"Konunuzu daha ayrıntılı değerlendirmek için Murat Bey ile kısa bir görüşme ayarlamamı ister misiniz?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+İLETİŞİM KURALLARI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+— Kurumsal, sıcakkanlı ve sade dil kullan.
+— "Harika!", "Kesinlikle!", "Tabii ki!" yasak.
+— Yanıt başına 3-5 cümle.
+— Fiyat verirken daima aralık kullan, "yerinde incelemeye tabidir" notunu ekle.
+— Yalnızca aşağıdaki 2026 piyasa verilerini kullan. Listede olmayan bölgeler için "Bu bölge için güncel veri almak amacıyla yerinde inceleme gereklidir" de.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ANTALYA KONUT PİYASASI — 2026 YILI ORTALAMALARI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Konyaaltı Altınkum : Satış 55.000–85.000 TL/m²  |  Kira 28.000–42.000 TL/ay (2+1, ~100 m²)
 Lara               : Satış 60.000–95.000 TL/m²  |  Kira 32.000–52.000 TL/ay
 Muratpaşa Merkez   : Satış 70.000–120.000 TL/m² |  Kira 35.000–65.000 TL/ay
 Kepez              : Satış 28.000–48.000 TL/m²  |  Kira 16.000–26.000 TL/ay
+Döşemealtı         : Satış 30.000–52.000 TL/m²  |  Kira 14.000–24.000 TL/ay
+Aksu / Kundu       : Satış 35.000–60.000 TL/m²  |  Kira 16.000–28.000 TL/ay
 Villalar (Konyaaltı / Lara) : 18.000.000–65.000.000 TL
 Brüt kira getirisi, Antalya merkez : Yıllık yaklaşık %3,5–5
 
 İletişim: +90 532 456 48 66  |  WhatsApp  |  Instagram: @muratiyiciogluofficial`
-  },
+},
 
-  en:{
-    status:'Real Estate Investment Specialist',
-    welcomeTitle:'Good day.',
-    welcomeDesc:'I am Q, the personal real estate assistant of Murat İyicioğlu. I\'m here to help you navigate the Antalya property market and plan your next step with confidence.',
-    sectionTopics:'Select a topic',
-    opt1Title:'Sale',opt1Sub:'Market value & process',
-    opt2Title:'Rental',opt2Sub:'Yield analysis & tenants',
-    opt3Title:'Investment',opt3Sub:'Returns & area analysis',
-    opt4Title:'Valuation',opt4Sub:'Free expert appraisal',
-    placeholder:'Type your message…',
-    backBtn:'Home',qrSub:'Visit our website',closeBtn:'Close',
-    callBtn:'📞 Call',waBtn:'💬 WhatsApp',
-    listening:'Listening…',voiceOn:'Voice reading on',voiceOff:'Voice reading off',
-    system:`You are "Q" — the personal real estate assistant of Murat İyicioğlu at Turyap Queen, Antalya.
+en: {
+  status:'Real Estate Investment Specialist',
+  welcomeTitle:'Good day.',
+  welcomeDesc:'I am Q, the personal real estate assistant of Murat İyicioğlu. I\'m here to help you navigate the Antalya property market with confidence.',
+  sectionTopics:'Select a topic',
+  opt1Title:'Sale',opt1Sub:'Market value & process',
+  opt2Title:'Rental',opt2Sub:'Yield analysis & tenants',
+  opt3Title:'Investment',opt3Sub:'Returns & area analysis',
+  opt4Title:'Valuation',opt4Sub:'Free expert appraisal',
+  placeholder:'Type your message…',
+  backBtn:'Home',qrSub:'Visit our website',closeBtn:'Close',
+  callBtn:'📞 Call',waBtn:'💬 WhatsApp',
+  listening:'Listening…',voiceOn:'Voice reading on',voiceOff:'Voice reading off',
+  system:`You are "Q" — the personal real estate assistant of Murat İyicioğlu at Turyap Queen, Antalya.
 
-PERSONALITY AND TONE:
-Speak like an experienced, trustworthy, and warm real estate professional. Corporate yet human; clear yet empathetic. Listen, assess, and guide like a real advisor. Never use filler phrases ("Great!", "Absolutely!", "Of course!"). Every sentence must carry meaning.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LANGUAGE RULE — HIGHEST PRIORITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Write ONLY in clean, correct English. No mixed languages, no characters from other alphabets (Chinese, Arabic, etc.).
 
-LANGUAGE:
-English only. No jargon unless genuinely necessary, and always explain it when used.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ADDRESS RULE — STRICTLY OBSERVED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RULE 1 — Name unknown (before name is given):
+NEVER use "Sir" or "Madam" without a name. Just greet: "Good day." or "Welcome."
 
-MANDATORY ADDRESS RULE:
-Using first name alone is strictly forbidden.
-— Full name known: "Dear [First Last]"
-— First name only: "Dear [First] Sir/Madam"
-This rule applies to every single message without exception.
+RULE 2 — After name is received (every message):
+Use "Dear [First Last]" or "Dear [First] Sir/Madam".
 
-FIRST CONTACT — NATURAL FLOW:
-In your first reply, after a genuine greeting, naturally ask for the person's full name — as a warm introduction, not a form. Once you have the full name, ask for a contact number "to send personalised information". After both are confirmed, focus on the actual topic.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FIRST CONTACT FLOW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Start with "Good day. Welcome to Turyap Queen real estate consultancy."
+2. Naturally ask for full name.
+3. After name: "Dear [Full Name], may I also have your contact number to send you personalised information?"
+4. After both received: proceed to the topic.
 
-APPOINTMENT OFFER:
-When a natural opening arises — roughly every 3–4 replies — offer a meeting or call with Murat. Present it as a genuine service, not a script: "If you'd like to go into more detail, Murat is available this week — I can arrange a time."
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRICE CALCULATION — MANDATORY MATHS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+When a client states a budget, calculate size mathematically from your price range:
+Possible size = Budget ÷ price per m²
+Example: 3,500,000 TRY budget, 55,000–85,000 TRY/m² → 41–63 m² possible.
+Fabricated or inconsistent area figures are STRICTLY FORBIDDEN.
 
-COMMUNICATION:
-— 3–5 sentences per reply. Be direct.
-— Always use price ranges and note "subject to on-site inspection".
-— Use only the 2026 data below; no other figures.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+APPOINTMENT OFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Every 3–4 replies, naturally offer a consultation:
+"Would you like me to arrange a brief meeting with Murat to discuss your situation in detail?"
 
-ANTALYA PROPERTY MARKET — 2026 AVERAGES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMMUNICATION RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+— Warm, corporate, plain language. No filler exclamations.
+— 3–5 sentences per reply.
+— Always use price ranges; note "subject to on-site inspection".
+— Use only the 2026 data below. For unlisted areas say "On-site research is needed for current data on this area."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ANTALYA PROPERTY MARKET — 2026 AVERAGES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Konyaaltı Altınkum : Sale 55,000–85,000 TRY/m²  |  Rent 28,000–42,000 TRY/month (2BR ~100m²)
 Lara               : Sale 60,000–95,000 TRY/m²  |  Rent 32,000–52,000 TRY/month
 Muratpaşa Centre   : Sale 70,000–120,000 TRY/m² |  Rent 35,000–65,000 TRY/month
 Kepez              : Sale 28,000–48,000 TRY/m²  |  Rent 16,000–26,000 TRY/month
+Döşemealtı         : Sale 30,000–52,000 TRY/m²  |  Rent 14,000–24,000 TRY/month
+Aksu / Kundu       : Sale 35,000–60,000 TRY/m²  |  Rent 16,000–28,000 TRY/month
 Villas (Konyaaltı/Lara) : 18,000,000–65,000,000 TRY
 Gross rental yield, Antalya centre : approx. 3.5–5% annually
 
 Contact: +90 532 456 48 66  |  WhatsApp  |  Instagram: @muratiyiciogluofficial`
-  },
+},
 
-  ru:{
-    status:'Специалист по инвестициям в недвижимость',
-    welcomeTitle:'Добрый день.',
-    welcomeDesc:'Я Q — персональный ассистент по недвижимости Мурата İyicioğlu. Помогу вам разобраться в рынке Антальи и выбрать верный шаг.',
-    sectionTopics:'Выберите тему',
-    opt1Title:'Продажа',opt1Sub:'Рыночная стоимость & процесс',
-    opt2Title:'Аренда',opt2Sub:'Анализ доходности & арендаторы',
-    opt3Title:'Инвестиции',opt3Sub:'Доходность & анализ района',
-    opt4Title:'Оценка',opt4Sub:'Бесплатная экспертиза',
-    placeholder:'Введите сообщение…',
-    backBtn:'Главная',qrSub:'Посетите наш сайт',closeBtn:'Закрыть',
-    callBtn:'📞 Записаться',waBtn:'💬 WhatsApp',
-    listening:'Слушаю…',voiceOn:'Голосовое чтение включено',voiceOff:'Голосовое чтение выключено',
-    system:`Вы "Q" — персональный ассистент по недвижимости Мурата İyicioğlu в Turyap Queen, Анталья.
+ru: {
+  status:'Специалист по инвестициям в недвижимость',
+  welcomeTitle:'Добрый день.',
+  welcomeDesc:'Я Q — персональный ассистент по недвижимости Мурата İyicioğlu. Помогу разобраться в рынке Антальи и выбрать верный шаг.',
+  sectionTopics:'Выберите тему',
+  opt1Title:'Продажа',opt1Sub:'Рыночная стоимость & процесс',
+  opt2Title:'Аренда',opt2Sub:'Анализ доходности',
+  opt3Title:'Инвестиции',opt3Sub:'Доходность & анализ',
+  opt4Title:'Оценка',opt4Sub:'Бесплатная экспертиза',
+  placeholder:'Введите сообщение…',
+  backBtn:'Главная',qrSub:'Посетите наш сайт',closeBtn:'Закрыть',
+  callBtn:'📞 Записаться',waBtn:'💬 WhatsApp',
+  listening:'Слушаю…',voiceOn:'Голосовое чтение включено',voiceOff:'Голосовое чтение выключено',
+  system:`Вы "Q" — персональный ассистент по недвижимости Мурата İyicioğlu в Turyap Queen, Анталья.
 
-СТИЛЬ И ХАРАКТЕР:
-Говорите как опытный, надёжный и тёплый специалист по недвижимости. Корпоративно, но по-человечески; чётко, но с пониманием. Слушайте, оценивайте, направляйте. Никаких дежурных фраз ("Отлично!", "Конечно!"). Каждое предложение должно нести смысл.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ПРАВИЛО ЯЗЫКА — ВЫСШИЙ ПРИОРИТЕТ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Пишите ТОЛЬКО на чистом русском языке. Никаких иностранных слов, китайских, арабских или других нелатинских символов.
 
-ЯЗЫК: Только русский. Без иностранных слов.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ПРАВИЛО ОБРАЩЕНИЯ — СТРОГО ОБЯЗАТЕЛЬНО
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ПРАВИЛО 1 — Имя неизвестно (до получения имени):
+НИКОГДА не используйте "Уважаемый/Уважаемая" без имени. Просто: "Добрый день."
 
-ОБЯЗАТЕЛЬНОЕ ОБРАЩЕНИЕ:
-Обращение только по имени строго запрещено.
-— Полное имя известно: "Уважаемый/Уважаемая [Имя Фамилия]"
-— Только имя: "Уважаемый/Уважаемая [Имя]"
-Это правило применяется в каждом сообщении без исключений.
+ПРАВИЛО 2 — После получения имени (каждое сообщение):
+"Уважаемый/Уважаемая [Имя Фамилия]"
 
-ПЕРВЫЙ КОНТАКТ:
-В первом ответе, после искреннего приветствия, естественно попросите полное имя — как при знакомстве. Получив имя, запросите контактный номер "для отправки персонализированной информации". Затем — к теме.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+РАСЧЁТ ПЛОЩАДИ — ОБЯЗАТЕЛЬНАЯ МАТЕМАТИКА
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+При указании бюджета рассчитывайте площадь математически:
+Возможная площадь = Бюджет ÷ цена за м²
+Пример: 3 500 000 TRY, 55 000–85 000 TRY/м² → 41–63 м².
+Придуманные или несоответствующие данные СТРОГО ЗАПРЕЩЕНЫ.
 
-ПРЕДЛОЖЕНИЕ ВСТРЕЧИ:
-При естественном поводе — примерно каждые 3–4 ответа — предложите встречу или звонок с Муратом. Искренне, как ценную услугу: "Если хотите обсудить детали, Мурат доступен на этой неделе — могу договориться о времени."
-
-КОММУНИКАЦИЯ:
-— 3–5 предложений. Без лишних слов.
-— Только диапазоны цен; "при условии осмотра объекта".
-— Только данные 2026 года.
-
-РЫНОК НЕДВИЖИМОСТИ АНТАЛЬИ — 2026:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+РЫНОК НЕДВИЖИМОСТИ АНТАЛЬИ — 2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Коньяалты Алтынкум : Продажа 55 000–85 000 TRY/м²  |  Аренда 28 000–42 000 TRY/мес
 Лара               : Продажа 60 000–95 000 TRY/м²  |  Аренда 32 000–52 000 TRY/мес
 Центр Муратпаша    : Продажа 70 000–120 000 TRY/м² |  Аренда 35 000–65 000 TRY/мес
 Кепез              : Продажа 28 000–48 000 TRY/м²  |  Аренда 16 000–26 000 TRY/мес
-Виллы (Коньяалты / Лара) : 18 000 000–65 000 000 TRY
+Дёшемеалты         : Продажа 30 000–52 000 TRY/м²  |  Аренда 14 000–24 000 TRY/мес
+Аксу / Кунду       : Продажа 35 000–60 000 TRY/м²  |  Аренда 16 000–28 000 TRY/мес
+Виллы (Коньяалты/Лара) : 18 000 000–65 000 000 TRY
 Доходность аренды, центр Антальи : около 3,5–5% в год
 
 Контакт: +90 532 456 48 66  |  WhatsApp  |  Instagram: @muratiyiciogluofficial`
-  },
+},
 
-  de:{
-    status:'Immobilien-Investmentspezialist',
-    welcomeTitle:'Guten Tag.',
-    welcomeDesc:'Ich bin Q, der persönliche Immobilienassistent von Murat İyicioğlu. Ich helfe Ihnen, den Antalya-Markt zu verstehen und den richtigen Schritt zu planen.',
-    sectionTopics:'Thema wählen',
-    opt1Title:'Verkauf',opt1Sub:'Marktwert & Ablauf',
-    opt2Title:'Vermietung',opt2Sub:'Renditeanalyse & Mieter',
-    opt3Title:'Investition',opt3Sub:'Rendite & Gebietsanalyse',
-    opt4Title:'Bewertung',opt4Sub:'Kostenlose Expertise',
-    placeholder:'Ihre Nachricht…',
-    backBtn:'Startseite',qrSub:'Unsere Website besuchen',closeBtn:'Schließen',
-    callBtn:'📞 Termin vereinbaren',waBtn:'💬 WhatsApp',
-    listening:'Ich höre…',voiceOn:'Sprachausgabe ein',voiceOff:'Sprachausgabe aus',
-    system:`Sie sind "Q" — der persönliche Immobilienassistent von Murat İyicioğlu bei Turyap Queen, Antalya.
+de: {
+  status:'Immobilien-Investmentspezialist',
+  welcomeTitle:'Guten Tag.',
+  welcomeDesc:'Ich bin Q, der persönliche Immobilienassistent von Murat İyicioğlu. Ich helfe Ihnen, den Antalya-Markt zu verstehen und den richtigen Schritt zu planen.',
+  sectionTopics:'Thema wählen',
+  opt1Title:'Verkauf',opt1Sub:'Marktwert & Ablauf',
+  opt2Title:'Vermietung',opt2Sub:'Renditeanalyse',
+  opt3Title:'Investition',opt3Sub:'Rendite & Analyse',
+  opt4Title:'Bewertung',opt4Sub:'Kostenlose Expertise',
+  placeholder:'Ihre Nachricht…',
+  backBtn:'Startseite',qrSub:'Unsere Website besuchen',closeBtn:'Schließen',
+  callBtn:'📞 Termin',waBtn:'💬 WhatsApp',
+  listening:'Ich höre…',voiceOn:'Sprachausgabe ein',voiceOff:'Sprachausgabe aus',
+  system:`Sie sind "Q" — der persönliche Immobilienassistent von Murat İyicioğlu bei Turyap Queen, Antalya.
 
-PERSÖNLICHKEIT UND STIL:
-Sprechen Sie wie ein erfahrener, vertrauenswürdiger und warmherziger Immobilienprofi. Sachlich, aber menschlich; klar, aber verständnisvoll. Zuhören, einschätzen, leiten. Keine Füllwörter ("Super!", "Natürlich!"). Jeder Satz muss Bedeutung tragen.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SPRACHREGEL — HÖCHSTE PRIORITÄT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Schreiben Sie NUR auf sauberem Deutsch. Keine Fremdwörter, keine chinesischen, arabischen oder sonstigen Sonderzeichen.
 
-SPRACHE: Nur Deutsch. Kein Fachjargon ohne Erklärung.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ANREDEPFLICHT — STRIKT EINZUHALTEN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REGEL 1 — Name unbekannt: NIEMALS "Sehr geehrte/r" ohne Namen. Nur: "Guten Tag."
+REGEL 2 — Nach Namensangabe: "Sehr geehrte/r [Vorname Nachname]"
 
-PFLICHTANREDE:
-Anrede nur mit dem Vornamen ist strikt verboten.
-— Vollständiger Name bekannt: "Sehr geehrte/r [Vorname Nachname]"
-— Nur Vorname bekannt: "Sehr geehrte/r [Vorname]"
-Diese Regel gilt ausnahmslos für jede Nachricht.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FLÄCHENBERECHNUNG — PFLICHTMATHEMATIK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Bei Budgetangabe: Mögliche Fläche = Budget ÷ Preis/m²
+Beispiel: 3.500.000 TRY, 55.000–85.000 TRY/m² → 41–63 m². Erfundene Zahlen streng verboten.
 
-ERSTER KONTAKT:
-Nach einer echten Begrüßung fragen Sie natürlich nach dem vollständigen Namen — wie bei einer aufrichtigen Vorstellung. Danach bitten Sie um eine Kontaktnummer "für personalisierte Informationen". Anschließend zum eigentlichen Thema.
-
-TERMINANGEBOT:
-Bei passender Gelegenheit — etwa alle 3–4 Antworten — bieten Sie ein Gespräch mit Murat an. Aufrichtig, als echte Dienstleistung: "Falls Sie Details besprechen möchten, Murat hat diese Woche Zeit — ich kann einen Termin arrangieren."
-
-KOMMUNIKATION:
-— 3–5 Sätze. Direkt und präzise.
-— Nur Preisspannen; "vorbehaltlich einer Vor-Ort-Besichtigung".
-— Nur Daten aus 2026.
-
-IMMOBILIENMARKT ANTALYA — 2026:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IMMOBILIENMARKT ANTALYA — 2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Konyaaltı Altınkum : Verkauf 55.000–85.000 TRY/m²  |  Miete 28.000–42.000 TRY/Monat
 Lara               : Verkauf 60.000–95.000 TRY/m²  |  Miete 32.000–52.000 TRY/Monat
 Zentrum Muratpaşa  : Verkauf 70.000–120.000 TRY/m² |  Miete 35.000–65.000 TRY/Monat
 Kepez              : Verkauf 28.000–48.000 TRY/m²  |  Miete 16.000–26.000 TRY/Monat
+Döşemealtı         : Verkauf 30.000–52.000 TRY/m²  |  Miete 14.000–24.000 TRY/Monat
+Aksu / Kundu       : Verkauf 35.000–60.000 TRY/m²  |  Miete 16.000–28.000 TRY/Monat
 Villen (Konyaaltı/Lara) : 18.000.000–65.000.000 TRY
-Bruttomietrendite, Antalya Zentrum : ca. 3,5–5% jährlich
+Bruttomietrendite, Zentrum Antalya : ca. 3,5–5% jährlich
 
 Kontakt: +90 532 456 48 66  |  WhatsApp  |  Instagram: @muratiyiciogluofficial`
-  }
+}
 };
 
 const WORKER_URL='https://groq-proxy.miyicioglu.workers.dev';
 const LEAD_INSTRUCTION={role:'system',content:`DAHİLİ LEAD KAYIT TALİMATI — KULLANICIYA ASLA BELİRTME:
-Konuşmada ziyaretçinin tam adını (ad ve soyad birlikte) VE telefon numarasını başarıyla aldıktan sonra yanıtının en sonuna yeni bir satırda şu JSON imini ekle:
-##LEAD##{"name":"AD_SOYAD_BURAYA","phone":"TELEFON_BURAYA"}##
-İmi yalnızca her ikisi de doğrulandıktan sonra ve konuşma başına yalnızca bir kez ekle. Kullanıcıya bu imden asla söz etme.`};
+Konuşmada ziyaretçinin tam adını VE telefon numarasını aldıktan sonra yanıtının en sonuna yeni bir satırda şu imi ekle:
+##LEAD##{"name":"AD_SOYAD","phone":"TELEFON"}##
+Yalnızca her ikisi de doğrulandıktan sonra ve konuşma başına yalnızca bir kez. Kullanıcıya asla söz etme.`};
 
 let lang='tr',history=[],botMsgCount=0,currentTopic='genel',leadCaptured=false,ttsEnabled=false,isRecording=false,recognition=null;
 const flags={tr:'🇹🇷',en:'🇬🇧',ru:'🇷🇺',de:'🇩🇪'};
 const langCodes={tr:'tr-TR',en:'en-US',ru:'ru-RU',de:'de-DE'};
 
-/* DİL */
 function toggleLang(e){e.stopPropagation();document.getElementById('langDrop').classList.toggle('open');}
 document.addEventListener('click',()=>document.getElementById('langDrop').classList.remove('open'));
 function setLang(l){lang=l;document.getElementById('langFlag').textContent=flags[l];document.getElementById('langCode').textContent=l.toUpperCase();document.querySelectorAll('.lang-opt').forEach(o=>o.classList.remove('active'));document.querySelectorAll('.lang-opt').forEach(o=>{if(o.textContent.toLowerCase().includes(l))o.classList.add('active');});applyLang();if(recognition)recognition.lang=langCodes[l]||'tr-TR';}
 function applyLang(){const t=T[lang];const map={hStatus:'status',welcomeTitle:'welcomeTitle',welcomeDesc:'welcomeDesc',sectionTopics:'sectionTopics',opt1Title:'opt1Title',opt1Sub:'opt1Sub',opt2Title:'opt2Title',opt2Sub:'opt2Sub',opt3Title:'opt3Title',opt3Sub:'opt3Sub',opt4Title:'opt4Title',opt4Sub:'opt4Sub',qrSub:'qrSub',btnClose:'closeBtn'};for(const[id,key]of Object.entries(map)){const el=document.getElementById(id);if(el)el.textContent=t[key]||'';}document.getElementById('homeInput').placeholder=t.placeholder;document.getElementById('chatInput').placeholder=t.placeholder;document.getElementById('btnBackTxt').textContent=t.backBtn;document.getElementById('viTxt').textContent=t.listening||'Dinleniyor…';}
 
-/* NAVİGASYON */
 function showChat(){document.getElementById('homeScreen').style.display='none';document.getElementById('chatScreen').classList.add('visible');document.getElementById('backBtn').classList.add('visible');setTimeout(()=>document.getElementById('chatInput').focus(),100);}
 function goHome(){if(recognition&&isRecording)recognition.stop();if(window.speechSynthesis)window.speechSynthesis.cancel();document.getElementById('homeScreen').style.display='';document.getElementById('chatScreen').classList.remove('visible');document.getElementById('backBtn').classList.remove('visible');leadCaptured=false;currentTopic='genel';}
 
-/* SOHBET ARAYÜZÜ */
-const LOGO_SVG=`<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M5 29 L10 15 L17 22 L20 8 L23 22 L30 15 L35 29 Z" fill="#b8932a"/><rect x="5" y="29" width="30" height="5" rx="2" fill="#0d2247"/><circle cx="20" cy="12" r="1.8" fill="#fff" opacity="0.75"/><circle cx="11" cy="20" r="1.2" fill="#fff" opacity="0.5"/><circle cx="29" cy="20" r="1.2" fill="#fff" opacity="0.5"/><text x="20" y="37" font-family="Arial,sans-serif" font-size="4.5" font-weight="900" fill="#b8932a" text-anchor="middle" letter-spacing="0.8">QUEEN</text></svg>`;
-
 function addDate(){const d=document.createElement('div');d.className='date-div';d.textContent=new Date().toLocaleDateString('tr-TR',{weekday:'long',day:'numeric',month:'long'});document.getElementById('chatArea').appendChild(d);}
-function addMsg(text,role){const row=document.createElement('div');row.className='msg-row '+(role==='user'?'user':'bot');if(role==='bot'){row.innerHTML=`<div class="avatar">${LOGO_SVG}</div><div class="bubble bot-b">${text}</div>`;if(ttsEnabled)speakText(text);}else{row.innerHTML=`<div class="bubble usr-b">${text}</div>`;}document.getElementById('chatArea').appendChild(row);scrollChat();}
-function addTyping(){const row=document.createElement('div');row.className='msg-row bot';row.id='typing';row.innerHTML=`<div class="avatar">${LOGO_SVG}</div><div class="bubble bot-b"><div class="typing-dots"><span></span><span></span><span></span></div><div class="ai-label">...</div></div>`;document.getElementById('chatArea').appendChild(row);scrollChat();}
+function addMsg(text,role){const row=document.createElement('div');row.className='msg-row '+(role==='user'?'user':'bot');if(role==='bot'){row.innerHTML=`<div class="avatar">${CROWN_SVG}</div><div class="bubble bot-b">${text}</div>`;if(ttsEnabled)speakText(text);}else{row.innerHTML=`<div class="bubble usr-b">${text}</div>`;}document.getElementById('chatArea').appendChild(row);scrollChat();}
+function addTyping(){const row=document.createElement('div');row.className='msg-row bot';row.id='typing';row.innerHTML=`<div class="avatar">${CROWN_SVG}</div><div class="bubble bot-b"><div class="typing-dots"><span></span><span></span><span></span></div><div class="ai-label">...</div></div>`;document.getElementById('chatArea').appendChild(row);scrollChat();}
 function removeTyping(){const e=document.getElementById('typing');if(e)e.remove();}
 function addCTA(){const t=T[lang];const row=document.createElement('div');row.className='cta-row';row.innerHTML=`<a href="tel:+905324564866" class="cta-btn call">${t.callBtn}</a><a href="https://wa.me/905324564866" class="cta-btn wa">${t.waBtn}</a>`;document.getElementById('chatArea').appendChild(row);scrollChat();}
 function scrollChat(){const c=document.getElementById('chatArea');c.scrollTop=c.scrollHeight;}
 
-/* SESLİ GİRİŞ */
-function initVoice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){document.querySelectorAll('.mic-btn').forEach(b=>b.style.display='none');return;}recognition=new SR();recognition.continuous=false;recognition.interimResults=true;recognition.lang=langCodes[lang]||'tr-TR';recognition.onstart=()=>{isRecording=true;document.querySelectorAll('.mic-btn').forEach(b=>b.classList.add('recording'));document.getElementById('voiceIndicator').classList.add('show');document.getElementById('viTxt').textContent=T[lang].listening||'Dinleniyor…';};recognition.onresult=(e)=>{const t=Array.from(e.results).map(r=>r[0].transcript).join('');getActiveInput().value=t;};recognition.onend=()=>{isRecording=false;document.querySelectorAll('.mic-btn').forEach(b=>b.classList.remove('recording'));document.getElementById('voiceIndicator').classList.remove('show');const txt=getActiveInput().value.trim();if(txt){if(document.getElementById('chatScreen').classList.contains('visible'))sendMsg();else sendFromHome();}};recognition.onerror=()=>{isRecording=false;document.querySelectorAll('.mic-btn').forEach(b=>b.classList.remove('recording'));document.getElementById('voiceIndicator').classList.remove('show');};}
+function initVoice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){document.querySelectorAll('.mic-btn').forEach(b=>b.style.display='none');return;}recognition=new SR();recognition.continuous=false;recognition.interimResults=true;recognition.lang=langCodes[lang]||'tr-TR';recognition.onstart=()=>{isRecording=true;document.querySelectorAll('.mic-btn').forEach(b=>b.classList.add('recording'));document.getElementById('voiceIndicator').classList.add('show');};recognition.onresult=(e)=>{const t=Array.from(e.results).map(r=>r[0].transcript).join('');getActiveInput().value=t;};recognition.onend=()=>{isRecording=false;document.querySelectorAll('.mic-btn').forEach(b=>b.classList.remove('recording'));document.getElementById('voiceIndicator').classList.remove('show');const txt=getActiveInput().value.trim();if(txt){if(document.getElementById('chatScreen').classList.contains('visible'))sendMsg();else sendFromHome();}};recognition.onerror=()=>{isRecording=false;document.querySelectorAll('.mic-btn').forEach(b=>b.classList.remove('recording'));document.getElementById('voiceIndicator').classList.remove('show');};}
 function getActiveInput(){return document.getElementById('chatScreen').classList.contains('visible')?document.getElementById('chatInput'):document.getElementById('homeInput');}
 function toggleMic(){if(!recognition)return;if(isRecording)recognition.stop();else{recognition.lang=langCodes[lang]||'tr-TR';try{recognition.start();}catch(e){}}}
 
-/* SESLİ OKUMA */
 function initTTS(){if(!window.speechSynthesis)document.getElementById('ttsBtn').style.display='none';}
-function toggleTTS(){ttsEnabled=!ttsEnabled;const btn=document.getElementById('ttsBtn');btn.classList.toggle('active',ttsEnabled);btn.title=ttsEnabled?(T[lang].voiceOn):(T[lang].voiceOff);if(!ttsEnabled&&window.speechSynthesis)window.speechSynthesis.cancel();}
+function toggleTTS(){ttsEnabled=!ttsEnabled;const btn=document.getElementById('ttsBtn');btn.classList.toggle('active',ttsEnabled);btn.title=ttsEnabled?T[lang].voiceOn:T[lang].voiceOff;if(!ttsEnabled&&window.speechSynthesis)window.speechSynthesis.cancel();}
 function speakText(text){if(!window.speechSynthesis)return;const clean=text.replace(/<[^>]*>/g,'').replace(/##LEAD##[^#]*##/g,'').trim();if(!clean)return;window.speechSynthesis.cancel();const utt=new SpeechSynthesisUtterance(clean);utt.lang=langCodes[lang]||'tr-TR';utt.rate=0.95;window.speechSynthesis.speak(utt);}
 
-/* LEAD */
 async function sendLeadToWorker(d){try{await fetch(WORKER_URL+'/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});}catch(e){}}
 function showLeadToast(){const t=document.createElement('div');t.className='lead-toast';t.textContent='✓ Bilgiler kaydedildi';document.body.appendChild(t);requestAnimationFrame(()=>t.classList.add('show'));setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),400);},3000);}
 
-/* GROQ */
 async function askQ(userMsg){
   history.push({role:'user',content:userMsg});addTyping();
   try{
@@ -536,12 +605,10 @@ async function askQ(userMsg){
   }catch(e){removeTyping();addMsg('Bağlantı hatası. Lütfen tekrar deneyin.','bot');}
 }
 
-/* GİRİŞ NOKTALARI */
-function startChat(type){currentTopic=type;showChat();if(!document.getElementById('chatArea').children.length)addDate();const labels={satis:{tr:'Gayrimenkulümü satmak istiyorum.',en:'I would like to sell my property.',ru:'Хочу продать недвижимость.',de:'Ich möchte meine Immobilie verkaufen.'},kiralama:{tr:'Kiraya vermek istiyorum.',en:'I would like to rent out my property.',ru:'Хочу сдать недвижимость.',de:'Ich möchte vermieten.'},yatirim:{tr:'Yatırım amaçlı gayrimenkul arıyorum.',en:'I am looking for an investment property.',ru:'Ищу недвижимость для инвестиций.',de:'Ich suche eine Investitionsimmobilie.'},degerleme:{tr:'Gayrimenkulümün değerini öğrenmek istiyorum.',en:'I would like a valuation.',ru:'Хочу оценить недвижимость.',de:'Ich möchte eine Bewertung.'}};const msg=labels[type][lang]||labels[type]['tr'];addMsg(msg,'user');askQ(msg);}
+function startChat(type){currentTopic=type;showChat();if(!document.getElementById('chatArea').children.length)addDate();const labels={satis:{tr:'Gayrimenkulümü satmak istiyorum.',en:'I would like to sell my property.',ru:'Хочу продать недвижимость.',de:'Ich möchte meine Immobilie verkaufen.'},kiralama:{tr:'Kiraya vermek istiyorum.',en:'I would like to rent out my property.',ru:'Хочу сдать недвижимость.',de:'Ich möchte vermieten.'},yatirim:{tr:'Yatırım amaçlı gayrimenkul arıyorum.',en:'I am looking for an investment property.',ru:'Ищу недвижимость для инвестиций.',de:'Ich suche eine Investitionsimmobilie.'},degerleme:{tr:'Gayrimenkulümün değerini öğrenmek istiyorum.',en:'I would like a property valuation.',ru:'Хочу оценить недвижимость.',de:'Ich möchte eine Immobilienbewertung.'}};const msg=labels[type][lang]||labels[type]['tr'];addMsg(msg,'user');askQ(msg);}
 function sendFromHome(){const input=document.getElementById('homeInput');const text=input.value.trim();if(!text)return;input.value='';currentTopic='genel';showChat();if(!document.getElementById('chatArea').children.length)addDate();addMsg(text,'user');askQ(text);}
 function sendMsg(){const input=document.getElementById('chatInput');const text=input.value.trim();if(!text)return;input.value='';addMsg(text,'user');askQ(text);}
 
-/* BAŞLATMA */
 applyLang();initVoice();initTTS();
 function fixHeight(){document.querySelector('.app').style.height=(window.visualViewport?window.visualViewport.height:window.innerHeight)+'px';}
 if(window.visualViewport)window.visualViewport.addEventListener('resize',function(){fixHeight();scrollChat();});
