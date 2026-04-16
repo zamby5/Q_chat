@@ -2,83 +2,38 @@
 // Önbellek sürümü: v1 — Değiştirince sürümü artır
 
 const CACHE_ADI = 'askq-v2';
-
-const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon.svg'
+const ONBELLEK_DOSYALARI = [
+  './',
+  './index.html',
+  './manifest.json',
+  './icon.svg',
+  'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Nunito:wght@300;400;500;600;700&display=swap',
+  'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'
 ];
 
-// Kurulum
+// Kurulum — dosyaları önbelleğe al
 self.addEventListener('install', (e) => {
-  self.skipWaiting();
-
   e.waitUntil(
-    caches.open(CACHE_ADI)
-      .then(cache => cache.addAll(STATIC_ASSETS))
-      .catch(err => console.error('Cache install error:', err))
+    caches.open(CACHE_ADI).then((cache) => {
+      return cache.addAll(ONBELLEK_DOSYALARI).catch(() => {
+        // Hata olursa devam et (harici kaynaklar yüklenemeyebilir)
+      });
+    })
   );
+  self.skipWaiting();
 });
 
-// Aktivasyon
+// Etkinleştirme — eski önbellekleri temizle
 self.addEventListener('activate', (e) => {
   e.waitUntil(
-    caches.keys().then(keys =>
+    caches.keys().then((anahtarlar) =>
       Promise.all(
-        keys
-          .filter(key => key !== CACHE_ADI)
-          .map(key => caches.delete(key))
+        anahtarlar
+          .filter((k) => k !== CACHE_ADI)
+          .map((k) => caches.delete(k))
       )
     )
   );
-
-  self.clients.claim();
-});
-
-// Fetch
-self.addEventListener('fetch', (e) => {
-  const req = e.request;
-  const url = new URL(req.url);
-
-  // API ve POST isteklerini bypass et
-  if (
-    req.method !== 'GET' ||
-    url.hostname.includes('groq-proxy') ||
-    url.hostname.includes('groq.com') ||
-    url.hostname.includes('workers.dev')
-  ) {
-    return;
-  }
-
-  e.respondWith(
-    caches.match(req).then(cached => {
-      if (cached) return cached;
-
-      return fetch(req)
-        .then(res => {
-
-          // Sadece güvenli cache edilebilir response
-          if (
-            res &&
-            res.status === 200 &&
-            (res.type === 'basic' || res.type === 'cors')
-          ) {
-            const clone = res.clone();
-            caches.open(CACHE_ADI).then(cache => cache.put(req, clone));
-          }
-
-          return res;
-        })
-        .catch(() => {
-          // Offline fallback
-          if (req.mode === 'navigate') {
-            return caches.match('/index.html');
-          }
-        });
-    })
-  );
-});
   return self.clients.claim();
 });
 
